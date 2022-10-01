@@ -4,6 +4,13 @@ using System.Text;
 
 namespace Dev.Enum.Response
 {
+    public class Response<T>
+    {
+        public StatusCodeEnum Code { get; set; }
+        public string Menssage { get; set; }
+        public T Result { get; set; }
+    }
+
     /// <summary>
     /// Enum general para las respuestas a los 
     /// Endpoints del API
