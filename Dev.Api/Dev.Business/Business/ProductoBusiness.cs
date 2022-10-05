@@ -1,5 +1,6 @@
 ﻿using Dev.Business.IBusiness;
 using Dev.Data.IRepository;
+using Dev.Model.Response;
 using Dev.Enum.Response;
 using System;
 using System.Collections.Generic;
@@ -16,19 +17,19 @@ namespace Dev.Business.Business
             repository = _repository;
         }
 
-        public Response<object> getProductos()
+        public ResponseModel<object> getProductos()
         {
-            Response<object> response = new Response<object>();
+            ResponseModel<object> response = new ResponseModel<object>();
             try
             {
                 response.Result = repository.GetList("sps_productos");
                 response.Code = StatusCodeEnum.Ok;
-                response.Menssage = "";
+                response.Message = "";
             }
             catch (Exception e)
             {
                 response.Code = StatusCodeEnum.Bad_Request;
-                response.Menssage = e.Message;
+                response.Message = e.Message;
             }
             return response;
         }
