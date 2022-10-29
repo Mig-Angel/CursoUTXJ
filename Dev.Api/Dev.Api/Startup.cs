@@ -37,6 +37,14 @@ namespace Dev.Api
                     Description = "Sample service for Learner",
                 });
             });
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(policy =>
+                {
+                    policy.WithOrigins("https://localhost:44367")
+                        .WithMethods("PUT", "DELETE", "GET", "POST");
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,6 +60,8 @@ namespace Dev.Api
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseCors();
 
             app.UseEndpoints(endpoints =>
             {
